@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {convertBin, convertDec} from './components/BinDecConverter';
 
 function App() {
   const [binval, setBinVal] = useState('');
@@ -10,29 +11,14 @@ function App() {
 
   const BinToDec = (e) => {
     e.preventDefault();
-    var i=0;
-    var res=0;
-    var tempBin=binval;
-    while(tempBin>0){
-      res = res+ (tempBin % 10) * (2 ** i);
-      tempBin = (tempBin - tempBin%10)/10;
-      ++i;
-    }
-    console.log(res);
+    var res=convertBin(binval);
     setDecRes(res);
   }
 
   const DecToBin = (e) => {
     e.preventDefault();
     var i=0;
-    var res=0;
-    var tempDec=decval;
-    while(tempDec>0){
-      res = res+ (tempDec % 2) * (10 ** i);
-      tempDec = (tempDec - tempDec%2)/2;
-      ++i;
-    }
-    console.log(res);
+    var res=convertDec(decval);
     setBinRes(res);
   }
   return (
